@@ -818,22 +818,3 @@ public type HolidayDetail record {|
     string EndDate?;
     *Authentication;
 |};
-
-# Represents query result type record
-#
-# + EmployeeId - The employee ID  
-# + FirstName - First name
-# + LastName - Last name
-# + AnnualLeaveStartDate - Annual leave start date
-# + AnnualLeaveEndDate - Annual leave end date
-# + AllowanceType - Allowance type
-# + 'Allowance\(Days\) - Allowance in days  
-public type QueryResult record {
-    string EmployeeId;
-    string FirstName?;
-    string LastName?;
-    string AnnualLeaveStartDate?;
-    string AnnualLeaveEndDate?;
-    string AllowanceType?;
-    string 'Allowance\(Days\)?;
-};
