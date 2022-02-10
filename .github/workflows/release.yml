@@ -10,7 +10,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Ballerina Build
-              uses: ballerina-platform/ballerina-action/@master
+              uses: ballerina-platform/ballerina-action@slbeta6
               with:
                   args:
                       pack ./peoplehr
@@ -21,7 +21,7 @@ jobs:
                 PASSWORD: ${{ secrets.PASSWORD }}
                 QUERY_NAME: ${{ secrets.QUERY_NAME }}
             - name: Ballerina Push
-              uses: ballerina-platform/ballerina-action/@master
+              uses: ballerina-platform/ballerina-action@slbeta6
               with:
                   args:
                       push
