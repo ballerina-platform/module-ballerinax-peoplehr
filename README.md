@@ -22,13 +22,13 @@ For more information, see [Ballerina Documentation - ballerinax/peoplehr](https:
  
 Execute the commands below to build from the source.
  
-* To build the package:
+* To build the ballerina package:
    ```   
-   bal build -c
+   bal pack ./peoplehr
    ```
-* To build the package without tests:
+* To run tests:
    ```
-   bal build -c --skip-tests
+   bal test ./peoplehr
    ```
 ## Contributing to Ballerina
  
