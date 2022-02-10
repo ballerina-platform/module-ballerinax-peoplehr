@@ -1,0 +1,13 @@
+[package]
+org = "ballerinax"
+name = "peoplehr"
+version = "1.0.0"
+authors = ["Ballerina"]
+icon = "icon.png"
+repository = "https://github.com/ballerina-platform/module-ballerinax-peoplehr"
+keywords = ["Human Resources/HRMS", "Cost/Paid"]
+license = ["Apache-2.0"]
+distribution = "slbeta6"
+
+[build-options]
+observabilityIncluded = true
