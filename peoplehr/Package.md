@@ -1,4 +1,4 @@
-Connects to [PeopleHR API](https://apidocs.peoplehr.com/#section/Introduction) from Ballerina
+Connects to [PeopleHR API](https://apidocs.peoplehr.com) from Ballerina
 
 ## Package overview
 The peoplehr is a [Ballerina](https://ballerina.io/) connector for People HR API.
