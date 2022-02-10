@@ -5,10 +5,10 @@ The peoplehr is a [Ballerina](https://ballerina.io/) connector for People HR API
 This package provides access to operations to mange to employee details, holidays and salary in your company.
 
 ### Compatibility
-|                      | Version                   |
-|----------------------|---------------------------|
-| Ballerina Language   | Ballerina Swan Lake Beta6 |
-| People HR API        | 3.1                       |
+|                      | Version                      |
+|----------------------|------------------------------|
+| Ballerina Language   | Ballerina Swan Lake 2201.0.0 |
+| People HR API        | 3.1                          |
 
 ## Report issues
 To report bugs, request new features, start new discussions, view project boards, etc., go to the [Ballerina Extended Library repository](https://github.com/ballerina-platform/ballerina-extended-library)
