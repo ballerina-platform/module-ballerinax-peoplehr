@@ -19,3 +19,4 @@ const string EMPLOYEE = "/Employee";
 const string VACANCY = "/Vacancy";
 const string HOLIDAY = "/Holiday";
 const string SALARY  = "/Salary";
+const string APPLICANT  = "/Applicant";

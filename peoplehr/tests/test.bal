@@ -31,8 +31,10 @@ Client baseClient = check new ({apiKey: apiKey, baseURL: baseURL});
 @test:Config {enable: true}
 function checkAuthentication() returns error? {
     log:printInfo("Check Authentication");
-    AuthenticationResponse response = check baseClient->checkAuthentication({EmailAddress: emailAddress, 
-        Password: password});
+    AuthenticationResponse response = check baseClient->checkAuthentication({
+        EmailAddress: emailAddress,
+        Password: password
+    });
     log:printInfo(response.toString());
 }
 
@@ -43,15 +45,22 @@ function testGetQueryResultByQueryName() returns error? {
     log:printInfo(response.Message);
 }
 
-@test:Config {enable: false, dependsOn: [testGetEmployeeDetailById, testMarkAsLeaverById, testMarkAsLeaverById, 
-    testAddNewHoliday]}
+@test:Config {
+    enable: false,
+    dependsOn: [
+        testGetEmployeeDetailById,
+        testMarkAsLeaverById,
+        testMarkAsLeaverById,
+        testAddNewHoliday
+    ]
+}
 function testUpdateEmployeeId() returns error? {
     log:printInfo("Update Employee Id");
     EmployeeIdUpdateRequest EmployeeIdUpdateRequest = {
         ReasonForChange: "Test only",
         OldEmployeeId: employeeId,
         NewEmployeeId: (check random:createIntInRange(100, 1000)).toString()
-    }; 
+    };
     OperationStatus response = check baseClient->updateEmployeeId(EmployeeIdUpdateRequest);
     log:printInfo(response.Message);
 }
@@ -61,8 +70,8 @@ function testGetAllEmployeeDetail() returns error? {
     log:printInfo("Get All Employee Detail");
     AllEmployeesRequest AllEmployeesRequest = {
         IncludeLeavers: false
-    }; 
-    EmployeesResponse response= check baseClient->getAllEmployees(AllEmployeesRequest);
+    };
+    EmployeesResponse response = check baseClient->getAllEmployees(AllEmployeesRequest);
     log:printInfo(response.Message);
 }
 
@@ -72,7 +81,7 @@ function testGetEmployeeDetailById() returns error? {
     EmployeeRequest EmployeeRequest = {
         EmployeeId: employeeId
     };
-    EmployeeResponse response= check baseClient->getEmployeeById(EmployeeRequest);
+    EmployeeResponse response = check baseClient->getEmployeeById(EmployeeRequest);
     log:printInfo(response.Message);
 }
 
@@ -93,7 +102,6 @@ function testCreateNewEmployee() returns error? {
     log:printInfo(response.Message);
 }
 
-
 @test:Config {enable: true}
 function testUpdateEmployeeDetail() returns error? {
     log:printInfo("Update Employee Detail");
@@ -102,7 +110,7 @@ function testUpdateEmployeeDetail() returns error? {
         FirstName: "BallerinaUser",
         ReasonForChange: "Test"
     };
-    OperationStatus response= check baseClient->updateEmployee(employee);
+    OperationStatus response = check baseClient->updateEmployee(employee);
     log:printInfo(response.Message);
 }
 
@@ -119,7 +127,7 @@ function testMarkAsLeaverById() returns error? {
         AdditionalComments: "Test",
         SupportingComments: "supporting comments"
     };
-    OperationStatus response= check baseClient->markAsLeaverById(employeeLeaverStatus);
+    OperationStatus response = check baseClient->markAsLeaverById(employeeLeaverStatus);
     log:printInfo(response.Message);
 }
 
@@ -130,7 +138,7 @@ function testGetSalaryDetail() returns error? {
         EmployeeId: "PW2",
         IsIncludeHistory: false
     };
-    SalaryDetailGetResponse response= check baseClient->getSalaryDetail(salaryDetailRequest);
+    SalaryDetailGetResponse response = check baseClient->getSalaryDetail(salaryDetailRequest);
     log:printInfo(response.toString());
 }
 
@@ -145,7 +153,7 @@ function testAddNewHoliday() returns error? {
         DurationInDays: "1",
         DurationInMinutes: "450"
     };
-    OperationStatus response= check baseClient->addNewHoliday(newHolidayRequest);
+    OperationStatus response = check baseClient->addNewHoliday(newHolidayRequest);
     log:printInfo(response.toString());
 }
 
@@ -155,7 +163,7 @@ function testGetHolidayDetail() returns error? {
     HolidayDetail holidayDetail = {
         EmployeeId: "PW2"
     };
-    HolidayGetResponse response= check baseClient->getHolidayDetail(holidayDetail);
+    HolidayGetResponse response = check baseClient->getHolidayDetail(holidayDetail);
     log:printInfo(response.toString());
 }
 
@@ -167,7 +175,7 @@ function testDeleteHoliday() returns error? {
         StartDate: "2023-07-27",
         EndDate: "2023-07-27"
     };
-    OperationStatus response= check baseClient->deleteHoliday(holidayDetail);
+    OperationStatus response = check baseClient->deleteHoliday(holidayDetail);
     log:printInfo(response.Message);
 }
 
@@ -177,13 +185,54 @@ function testGetVacancy() returns error? {
     GetVacancyResultRequest vacancyDetail = {
         VacancyReference: "VA1"
     };
-    VacancyGetResponse response= check baseClient->getVacancy(vacancyDetail);
+    VacancyGetResponse response = check baseClient->getVacancy(vacancyDetail);
     log:printInfo(response.Message);
 }
 
 @test:Config {enable: true}
 function testGetAllVacancies() returns error? {
     log:printInfo("Get All Vacancies");
-    AllVacancies response= check baseClient->getAllVacancies();
+    AllVacancies response = check baseClient->getAllVacancies();
+    log:printInfo(response.toString());
+}
+
+@test:Config {enable: true}
+function testCreateNewApplicant() returns error? {
+    log:printInfo("Create new applicant");
+    NewApplicant newApplicant = {
+        FirstName: "Smith",
+        LastName: "Perera",
+        Email: "testapplicant@wso2.com",
+        Documents: [{DocumentName: "CV01", Url: "www.mycv.com"}],
+        Skills: "Programming",
+        VacancyReference: "VA100"
+    };
+    OperationStatus response = check baseClient->createNewApplicant(newApplicant);
+    log:printInfo(response.Message);
+}
+
+@test:Config {enable: true, dependsOn: [testCreateNewApplicant]}
+function testUploadApplicantDocument() returns error? {
+    log:printInfo("Upload new document");
+    NewDocument newDocument = {
+        ApplicantId: "6604761",
+        Description: "Degree",
+        DocumentName: "transcript.txt",
+        File: "dGVzdCBmaWxlCg=="
+    };
+    OperationStatus response = check baseClient->uploadApplicantDocument(newDocument);
+    log:printInfo(response.toString());
+}
+
+@test:Config {enable: true, dependsOn: [testCreateNewApplicant]}
+function testCheckDuplicateApplicant() returns error? {
+    log:printInfo("Check duplicate applicant");
+    ApplicantInformation applicantInformation = {
+        FirstName: "Smith",
+        LastName: "Perera",
+        Email: "testapplicant@wso2.com",
+        VacancyReference: "VA3"
+    };
+    OperationStatus response = check baseClient->checkDuplicateApplicant(applicantInformation);
     log:printInfo(response.toString());
 }

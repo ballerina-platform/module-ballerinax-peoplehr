@@ -217,6 +217,48 @@ public isolated client class Client {
         return check self.HTTPClient->post(VACANCY, request);
     }
 
+    # Creates New Applicant
+    #
+    # + payload - New applicant detail
+    # + return - Successful response or an error
+    @display{label: "Create New Applicant"}
+    isolated remote function createNewApplicant(@display{label: "New Applicant detail"} NewApplicant payload) returns 
+                                                OperationStatus|error {
+        http:Request request = new;
+        json jsonBody = check payload.cloneWithType(json);
+        json authentication = {APIKey: self.config.apiKey, Action: "CreateNewApplicant"};
+        request.setJsonPayload(check jsonBody.mergeJson(authentication));
+        return check self.HTTPClient->post(APPLICANT, request);
+    }
+
+    # Upload applicant document
+    #
+    # + payload - Request detail on new document
+    # + return - Successful response or an error 
+    @display{label: "Upload new applicant document"}
+    isolated remote function uploadApplicantDocument(@display{label: "New applicant document"} NewDocument payload) 
+                                                    returns OperationStatus|error {
+        http:Request request = new;
+        json jsonBody = check payload.cloneWithType(json);
+        json authentication = {APIKey: self.config.apiKey, Action: "uploadapplicantdocument"};
+        request.setJsonPayload(check jsonBody.mergeJson(authentication));
+        return check self.HTTPClient->post(APPLICANT, request);
+    }
+
+    # Checks duplicate applicant
+    #
+    # + payload - Request detail on an applicant
+    # + return - Successful response or an error 
+    @display{label: "Check duplicate applicant"}
+    isolated remote function checkDuplicateApplicant(@display{label: "Applicant detail"} ApplicantInformation payload) 
+                                                    returns OperationStatus|error {
+        http:Request request = new;
+        json jsonBody = check payload.cloneWithType(json);
+        json authentication = {APIKey: self.config.apiKey, Action: "CheckDuplicateApplicant"};
+        request.setJsonPayload(check jsonBody.mergeJson(authentication));
+        return check self.HTTPClient->post(APPLICANT, request);
+    }
+
     # Gets query result By query name details.
     #
     # + payload - Request detail on a query 
