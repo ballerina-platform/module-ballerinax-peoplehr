@@ -69,7 +69,7 @@ public type EmployeeVerification record {
     string EmployeeId?;
 };
 
-# Represents the response type of `UpdateEmployeeId` operation
+# Represents the response type of an operation
 #
 # + Result - The response of the operation 
 public type OperationStatus record {
@@ -177,7 +177,7 @@ public type AllVacancies record {|
 # + AdditionalQuestions - Additional questions  
 # + InternalQuestions - Internal questions on the vacancy  
 public type Vacancy record {
-    string? VacancyName?;
+    string VacancyName?;
     string? VacancyDescription?;
     string? Company?;
     string? Location?;
@@ -790,7 +790,6 @@ public type HolidayUpdateRequest record {|
 # + LastActionDateTime - The last action date time  
 # + IsToilHoliday - indicates whether isToil Holiday
 public type Holiday record {|
-    *Authentication;
     string StartDate?;
     string EndDate?;
     int DurationType?;
@@ -805,6 +804,7 @@ public type Holiday record {|
     string Status?;
     string LastActionDateTime?;
     boolean IsToilHoliday?;
+    *Authentication;
 |};
 
 # Represents holiday detail 
@@ -816,5 +816,98 @@ public type HolidayDetail record {|
     string EmployeeId;
     string StartDate?;
     string EndDate?;
+    *Authentication;
+|};
+
+# Represents additional question
+#
+# + QuestionId - Question ID
+# + Value - Value default value
+public type AdditionalQuestion record {
+    string QuestionId;
+    string Value;
+};
+
+# Internal questions for create new applicant
+#
+public type InternalQuestion record {
+    *AdditionalQuestion;
+};
+
+# Represents Document detail
+#
+# + DocumentName - Document name  
+# + Url - URL for the document
+public type Document record {
+    string DocumentName;
+    string Url;
+};
+
+# Represents new applicant
+#
+# + VacancyReference - Vacancy reference for create new applicant
+# + FirstName - First name for create new applicant 
+# + LastName - Last name for create new applicant
+# + Email - Email for create new applicant 
+# + Gender - Gender for create new applicant 
+# + DateOfBirth - Date of birth for create new applicant
+# + PostCode - Post code for create new applicant
+# + Address - Address for create new applicant
+# + PhoneNumber - PhoneNumber for create new applicant
+# + OtherContactDetails - Other contact details for create new applicant
+# + Source - Source for create new applicant
+# + AdditionalQuestions - Source for create new applicant
+# + InternalQuestions - Internal questions for create new applicant
+# + Documents - Documents for create new applicant
+# + Skills - Skills for create new applicant
+# + RecruitmentCost - Recruitment cost for create new applicant
+# + DateLastContacted - Date last contacted for create new applicant
+public type NewApplicant record {|
+    string VacancyReference?;
+    string FirstName;
+    string LastName;
+    string Email?;
+    string Gender?;
+    string DateOfBirth?;
+    string PostCode?;
+    string Address?;
+    string PhoneNumber?;
+    string OtherContactDetails?;
+    string Source?;
+    AdditionalQuestion[] AdditionalQuestions?;
+    InternalQuestion[] InternalQuestions?;
+    Document[] Documents;
+    string Skills;
+    string RecruitmentCost?;
+    string DateLastContacted?;
+    *Authentication;
+    json...;
+|};
+
+# Represents document detail 
+#
+# + ApplicantId - ApplicantId for upload applicant document  
+# + DocumentName - Document name for upload applicant document(<= 100 characters) 
+# + Description - Description for upload applicant document(<= 256 characters) 
+# + File - File for upload applicant document  
+public type NewDocument record {|
+    string ApplicantId;
+    string DocumentName;
+    string Description;
+    string File;
+    *Authentication;
+|};
+
+# Applicant information for duplicate checking
+#
+# + VacancyReference - Vacancy reference for check duplicate applicant 
+# + FirstName - First name for check duplicate applicant(<= 50 characters) 
+# + LastName - Last name for check duplicate applicant(<= 50 characters) 
+# + Email - Email for check duplicate applicant
+public type ApplicantInformation record {|
+    string FirstName;
+    string LastName;
+    string VacancyReference;
+    string Email?;
     *Authentication;
 |};
