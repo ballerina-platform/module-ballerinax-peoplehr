@@ -7,7 +7,7 @@ This package provides access to operations to mange to employee details, holiday
 ### Compatibility
 |                      | Version                      |
 |----------------------|------------------------------|
-| Ballerina Language   | Ballerina Swan Lake 2201.0.0 |
+| Ballerina Language   | Ballerina Swan Lake 2201.2.0 |
 | People HR API        | 3.1                          |
 
 ## Report issues
