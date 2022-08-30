@@ -32,9 +32,24 @@ public isolated client class Client {
     # + config - People connection configuration
     # + httpClientConfig - HTTP configuration
     # + return - `http:Error` in case of failure to initialize or `null` if successfully initialized 
-    public isolated function init(ConnectionConfig config, http:ClientConfiguration httpClientConfig = {}) returns
-                                error? {
+    public isolated function init(ConnectionConfig config) returns error? {
         self.config = config.cloneReadOnly();
+        http:ClientConfiguration httpClientConfig = {
+            httpVersion: config.httpVersion,
+            http1Settings: {...config.http1Settings},
+            http2Settings: config.http2Settings,
+            timeout: config.timeout,
+            forwarded: config.forwarded,
+            poolConfig: config.poolConfig,
+            cache: config.cache,
+            compression: config.compression,
+            circuitBreaker: config.circuitBreaker,
+            retryConfig: config.retryConfig,
+            responseLimits: config.responseLimits,
+            secureSocket: config.secureSocket,
+            proxy: config.proxy,
+            validation: config.validation
+        };
         self.HTTPClient = check new (config.baseURL, httpClientConfig);
     }
 
@@ -287,17 +302,4 @@ public isolated client class Client {
         request.setJsonPayload(check jsonBody.mergeJson(authentication));
         return self.HTTPClient->post(EMPLOYEE, request);
     }
-
 }
-
-# Configuration record for PeopleHR.
-#
-# + apiKey - PeopleHR API key  
-# + baseURL - Base URL
-@display {label: "Connection Config"}
-public type ConnectionConfig record {
-    @display {label: "API Key"}
-    string apiKey;
-    @display {label: "PeopleHR WebService URL"}
-    string baseURL = "https://api.peoplehr.net";
-};
