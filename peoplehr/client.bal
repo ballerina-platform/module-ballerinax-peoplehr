@@ -15,6 +15,7 @@
 // under the License.
 
 import ballerina/http;
+import ballerinax/'client.config;
 
 # This connector helps you easily integrate People with other systems and applications, for seamless cross-platform data sharing. The People API 
 # accepts and returns JSON data in the request body, with status indicating the outcome of the operation (sucess/failure).
@@ -34,22 +35,7 @@ public isolated client class Client {
     # + return - `http:Error` in case of failure to initialize or `null` if successfully initialized 
     public isolated function init(ConnectionConfig config) returns error? {
         self.config = config.cloneReadOnly();
-        http:ClientConfiguration httpClientConfig = {
-            httpVersion: config.httpVersion,
-            http1Settings: {...config.http1Settings},
-            http2Settings: config.http2Settings,
-            timeout: config.timeout,
-            forwarded: config.forwarded,
-            poolConfig: config.poolConfig,
-            cache: config.cache,
-            compression: config.compression,
-            circuitBreaker: config.circuitBreaker,
-            retryConfig: config.retryConfig,
-            responseLimits: config.responseLimits,
-            secureSocket: config.secureSocket,
-            proxy: config.proxy,
-            validation: config.validation
-        };
+        http:ClientConfiguration httpClientConfig = check config:constructHTTPClientConfig(config);
         self.HTTPClient = check new (config.baseURL, httpClientConfig);
     }
 

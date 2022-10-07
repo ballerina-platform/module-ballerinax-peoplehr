@@ -13,6 +13,23 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
+
+import ballerinax/'client.config;
+
+# Client configuration details.
+@display {label: "Connection Config"}
+public type ConnectionConfig record {|
+    *config:ConnectionConfig;
+    never auth?;
+    # PeopleHR API key
+    @display {
+        label: "",
+        kind: "password"
+    }
+    string apiKey;
+    # Base URL
+    string baseURL = "https://api.peoplehr.net";
+|};
  
 type Authentication record {
     string APIKey?;
