@@ -35,18 +35,18 @@ function checkAuthentication() returns error? {
         EmailAddress: emailAddress,
         Password: password
     });
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
 function testGetQueryResultByQueryName() returns error? {
     log:printInfo("Get Query Result By QueryName");
     QueryDetail response = check baseClient->getQueryByName({QueryName: queryName});
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {
-    enable: false,
+    enable: true,
     dependsOn: [
         testGetEmployeeDetailById,
         testMarkAsLeaverById,
@@ -62,7 +62,7 @@ function testUpdateEmployeeId() returns error? {
         NewEmployeeId: (check random:createIntInRange(100, 1000)).toString()
     };
     OperationStatus response = check baseClient->updateEmployeeId(EmployeeIdUpdateRequest);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -72,7 +72,7 @@ function testGetAllEmployeeDetail() returns error? {
         IncludeLeavers: false
     };
     EmployeesResponse response = check baseClient->getAllEmployees(AllEmployeesRequest);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testCreateNewEmployee]}
@@ -82,7 +82,7 @@ function testGetEmployeeDetailById() returns error? {
         EmployeeId: employeeId
     };
     EmployeeResponse response = check baseClient->getEmployeeById(EmployeeRequest);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -99,7 +99,7 @@ function testCreateNewEmployee() returns error? {
         Department: "Engineering"
     };
     OperationStatus response = check baseClient->createNewEmployee(employee);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -111,7 +111,7 @@ function testUpdateEmployeeDetail() returns error? {
         ReasonForChange: "Test"
     };
     OperationStatus response = check baseClient->updateEmployee(employee);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testUpdateEmployeeDetail]}
@@ -128,7 +128,7 @@ function testMarkAsLeaverById() returns error? {
         SupportingComments: "supporting comments"
     };
     OperationStatus response = check baseClient->markAsLeaverById(employeeLeaverStatus);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -139,7 +139,7 @@ function testGetSalaryDetail() returns error? {
         IsIncludeHistory: false
     };
     SalaryDetailGetResponse response = check baseClient->getSalaryDetail(salaryDetailRequest);
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testCreateNewEmployee]}
@@ -154,7 +154,7 @@ function testAddNewHoliday() returns error? {
         DurationInMinutes: "450"
     };
     OperationStatus response = check baseClient->addNewHoliday(newHolidayRequest);
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testAddNewHoliday]}
@@ -164,7 +164,7 @@ function testGetHolidayDetail() returns error? {
         EmployeeId: "PW2"
     };
     HolidayGetResponse response = check baseClient->getHolidayDetail(holidayDetail);
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testGetHolidayDetail]}
@@ -176,7 +176,7 @@ function testDeleteHoliday() returns error? {
         EndDate: "2023-07-27"
     };
     OperationStatus response = check baseClient->deleteHoliday(holidayDetail);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -186,14 +186,14 @@ function testGetVacancy() returns error? {
         VacancyReference: "VA1"
     };
     VacancyGetResponse response = check baseClient->getVacancy(vacancyDetail);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
 function testGetAllVacancies() returns error? {
     log:printInfo("Get All Vacancies");
     AllVacancies response = check baseClient->getAllVacancies();
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true}
@@ -208,7 +208,7 @@ function testCreateNewApplicant() returns error? {
         VacancyReference: "VA100"
     };
     OperationStatus response = check baseClient->createNewApplicant(newApplicant);
-    log:printInfo(response.Message);
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testCreateNewApplicant]}
@@ -221,7 +221,7 @@ function testUploadApplicantDocument() returns error? {
         File: "dGVzdCBmaWxlCg=="
     };
     OperationStatus response = check baseClient->uploadApplicantDocument(newDocument);
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
 }
 
 @test:Config {enable: true, dependsOn: [testCreateNewApplicant]}
@@ -234,5 +234,123 @@ function testCheckDuplicateApplicant() returns error? {
         VacancyReference: "VA3"
     };
     OperationStatus response = check baseClient->checkDuplicateApplicant(applicantInformation);
-    log:printInfo(response.toString());
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testGetEmployeeScreenDetail() returns error? {
+    log:printInfo("Get employee screen detail");
+    EmployeeScreenDetailResponse response = check baseClient->getEmployeeScreenDetail();
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testGetEmployeeScreenDetailByEmployeeID() returns error? {
+    log:printInfo("Get employee screen detail by employee ID");
+    ScreenDetailByEmployeeIDRequest payload = {
+        ScreenId: 378661,
+        EmployeeId: "PW1"
+    };
+    EmployeeScreenDetailResponse response = check baseClient->getEmployeeScreenDetailByEmployeeID(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testGetEmployeeScreenDetailByTransactionID() returns error? {
+    log:printInfo("Get employee screen detail by employee ID");
+    ScreenDetailByTransactionIDRequest payload = {
+        ScreenId: 0,
+        EmployeeId: "123",
+        CustomScreenTransactionId: 124
+    };
+    EmployeeScreenDetailResponse response = check baseClient->getEmployeeScreenDetailByEmployeeID(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testAddNewCustomScreenTransaction() returns error? {
+    log:printInfo("Add new employee screen detail");
+    NewCustomScreenTransactionDetails payload = {
+        EmployeeId: "PW180",
+        ScreenId: 314026,
+        CustomColumns: [
+            {
+            ColumnName: "Column 1 Name",
+            ColumnValue: "Abcd"
+            }
+        ],
+        AddFiles: [
+            {
+            DocumentName: "123.pdf",
+            File: "Pass base64 string",
+            Description: "File description",
+            DocumentCategory: "Custom Category",
+            SignatureRequired: false
+            }
+        ]
+    };
+    OperationStatus response = check baseClient->addNewCustomScreenTransaction(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testupdateCustomScreenTransaction() returns error? {
+    log:printInfo("Update new employee screen detail");
+    ExistingCustomScreenTransactionDetails payload = {
+        CustomScreenTransactionId: 124,
+        EmployeeId: "PW180",
+        ScreenId: 314026,
+        CustomColumns: [
+            {
+            ColumnName: "Column 1 Name",
+            ColumnValue: "Abcd"
+            }
+        ],
+        AddFiles: [
+            {
+            DocumentName: "123.pdf",
+            File: "Pass base64 string",
+            Description: "File description",
+            DocumentCategory: "Custom Category",
+            SignatureRequired: false
+            }
+        ]
+    };
+    OperationStatus response = check baseClient->updateCustomScreenTransaction(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testDeleteEmployeeScreenDetailByTransactionID() returns error? {
+    log:printInfo("Delete employee screen detail by employee ID");
+    ScreenDetailByTransactionIDRequest payload = {
+        ScreenId: 0,
+        EmployeeId: "123",
+        CustomScreenTransactionId: 124
+    };
+    OperationStatus response = check baseClient->DeleteCustomScreenTransaction(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testGetAppraisalDetailsByEmployeeID() returns error? {
+    log:printInfo("Get appraisal details by employee ID");
+    AppraisalDetailsRequest payload = {
+        EmployeeId: "PW1",
+        StartDate: "2023-01-12",
+        EndDate: "2023-01-30"
+    };
+    AppraisalDetailsResponse response = check baseClient->getAppraisalDetailsByEmployeeID(payload);
+    test:assertFalse(response.isError, msg = response.Message);
+}
+
+@test:Config {enable: true}
+function testGetAppraisalDetailsByAppraisalID() returns error? {
+    log:printInfo("Get appraisal details by appraisal ID");
+    AppraisalDetailsByAppraisalIDRequest payload = {
+        EmployeeId: "123",
+        AppraisalId: 0
+    };
+    AppraisalDetailsResponse response = check baseClient->getAppraisalDetailsByAppraisalID(payload);
+    test:assertFalse(response.isError, msg = response.Message);
 }
