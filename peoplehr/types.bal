@@ -928,3 +928,151 @@ public type ApplicantInformation record {|
     string Email?;
     *Authentication;
 |};
+
+# Represents the Custom Fields
+#
+# + ColumnName - The name of the custom field  
+# + ColumnValue - The value of the custom field
+public type Customfield record {
+    string ColumnName;
+    string ColumnValue;
+};
+
+# Represents Files Details
+#
+# + DocumentName - Name of the document name  
+# + Description - Description of the file  
+# + FileUrl - URL of the file  
+# + Category - File category  
+# + SignatureRequired - Whether a signature is required for the document
+public type File record {
+    string DocumentName; 
+    string Description; 
+    string FileUrl; 
+    string Category; 
+    boolean SignatureRequired;  
+};
+
+# Represents Files Details
+#
+# + DocumentName - Name of the document name  
+# + Description - Description of the file  
+# + File - The file content in Base64 string  
+# + DocumentCategory - File category  
+# + SignatureRequired - Whether a signature is required for the document
+public type NewFile record {
+    string DocumentName; 
+    string Description; 
+    string File; 
+    string DocumentCategory; 
+    boolean SignatureRequired;  
+};
+
+# Represents Employee Screen Details
+#
+# + ScreenId - ScreenId is the unique identifier of the employee custom screen  
+# + ScreenName - ScreenName is the name of the employee custom screen  
+# + TxnId - Field Description  
+# + Customfields - Custom fields details  
+# + Files - Files details
+public type EmployeeScreenDetail record {
+    int ScreenId?;
+    string ScreenName?;
+    int TxnId?;
+    Customfield[] Customfields?;
+    File[] Files?;
+};
+
+# Represents the response of `GetEmployeeScreenDetail` operation  
+#
+# + Result - The response of the operation
+public type EmployeeScreenDetailResponse record {|
+    *PeopleHRGenericResponse;
+    EmployeeScreenDetail[]|record {} Result;
+|};
+
+# Represents request details for retrieving screen details by employee ID
+#
+# + EmployeeId - EmployeeId for employee custom screen
+# + ScreenId -   ScreenId for employee custom screen
+public type ScreenDetailByEmployeeIDRequest record {
+    string EmployeeId;
+    int ScreenId;
+};
+
+# Represents request details for retrieving screen details by transaction ID
+#
+# + CustomScreenTransactionId - CustomScreenTransactionId for employee custom screen
+public type ScreenDetailByTransactionIDRequest record {
+    *ScreenDetailByEmployeeIDRequest;
+    int CustomScreenTransactionId;
+};
+
+# Represents new custom screen details
+#
+# + CustomColumns - CustomColumns for add new custom screen transaction 
+# + AddFiles - 	AddFiles for add new custom screen transaction
+public type NewCustomScreenTransactionDetails record {
+    *ScreenDetailByEmployeeIDRequest;
+    Customfield[] CustomColumns;
+    NewFile[] AddFiles;
+};
+
+# Represents Existing custom screen transaction details
+#
+# + CustomColumns - Field Description  
+# + AddFiles - Field Description
+public type ExistingCustomScreenTransactionDetails record {
+    *ScreenDetailByTransactionIDRequest;
+    Customfield[] CustomColumns;
+    NewFile[] AddFiles;
+};
+
+# Represents appraisal details request
+#
+# + EmployeeId - Employee id for get by employee id  
+# + StartDate - Start date for get by employee id  
+# + EndDate - EndDate date for get by employee id
+public type AppraisalDetailsRequest record {
+    string EmployeeId;
+    string StartDate;
+    string EndDate;
+};
+
+# Represents appraisal details request by appraisal ID
+#
+# + EmployeeId - Employee id for get by employee id  
+# + AppraisalId - Start date for get by employee id  
+public type AppraisalDetailsByAppraisalIDRequest record {
+    string EmployeeId;
+    int AppraisalId; 
+};
+
+# Represents appraisal details response record
+#
+# + Result - Field Description
+public type AppraisalDetailsResponse record {
+    *PeopleHRGenericResponse;
+    AppraisalDetail[]|record {} Result;
+};
+
+# Represents appraisal details response results
+#
+# + AppraisalId - Appraisal ID  
+# + AppraisalReviewDate - Appraisal Review Date  
+# + Reviewer - Reviewer Details  
+# + Note - Note on appraisal  
+# + ActionPlan - Action Plan
+# + Objectives - Objective detail
+# + Customfields - Custom columns details  
+# + Files - File Details
+public type AppraisalDetail record {
+    int AppraisalId;
+    string AppraisalReviewDate;
+    string Reviewer;
+    string Note;
+    string ActionPlan;
+    string Objectives;
+    Customfield[] Customfields?;
+    File[] Files?;
+};
