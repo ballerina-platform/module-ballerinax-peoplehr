@@ -1,8 +1,8 @@
 [package]
-distribution = "2201.3.0"
+distribution = "2201.3.1"
 org = "ballerinax"
 name = "peoplehr"
-version = "2.0.0"
+version = "2.1.0"
 authors = ["Ballerina"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-peoplehr"

@@ -288,4 +288,106 @@ public isolated client class Client {
         request.setJsonPayload(check jsonBody.mergeJson(authentication));
         return self.HTTPClient->post(EMPLOYEE, request);
     }
+
+    # Retrieves employee screen detail
+    #
+    # + return -  Successful response or an error
+    @display{label: "Get Employee Screen Detail"} 
+    isolated remote function getEmployeeScreenDetail() returns EmployeeScreenDetailResponse|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "GetCustomScreenDetail"};
+        request.setJsonPayload(authentication);
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # Retrieves employee screen detail by employee ID
+    #
+    # + payload - Request details on employee screen
+    # + return -  Successful response or an error
+    @display{label: "Get Employee Screen Detail by employee ID"} 
+    isolated remote function getEmployeeScreenDetailByEmployeeID(@display{label: "Employee Screen Detail Request Info"} 
+        ScreenDetailByEmployeeIDRequest payload) returns EmployeeScreenDetailResponse|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "GetCustomScreenByEmployeeId"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # Retrieves employee screen detail by transaction ID
+    #
+    # + payload - Request details on employee screen
+    # + return -  Successful response or an error
+    @display{label: "Get Employee Screen Detail by transaction ID"} 
+    isolated remote function getEmployeeScreenDetailByTransactionID(@display{label: "Employee Screen Detail Request Info"} 
+        ScreenDetailByTransactionIDRequest payload) returns EmployeeScreenDetailResponse|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "GetCustomScreenByEmployeeId"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # New custom screen transaction details
+    #
+    # + payload - New employee screen details
+    # + return -  Successful response or an error
+    @display{label: "Add Employee Screen Detail by employee ID"} 
+    isolated remote function addNewCustomScreenTransaction(@display{label: "New Custom Screen Details"} 
+        NewCustomScreenTransactionDetails payload) returns OperationStatus|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "AddNewCustomScreenTransaction"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # Update custom screen transaction details
+    #
+    # + payload - Employee screen details
+    # + return -  Successful response or an error
+    @display{label: "Update Employee Screen Detail"} 
+    isolated remote function updateCustomScreenTransaction(@display{label: "Custom Screen Details"} 
+        ExistingCustomScreenTransactionDetails payload) returns OperationStatus|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "UpdateCustomScreenTransaction"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # Delete custom screen transaction details
+    #
+    # + payload - Employee screen details
+    # + return -  Successful response or an error
+    @display{label: "Delete Employee Screen Detail"} 
+    isolated remote function DeleteCustomScreenTransaction(@display{label: "Custom Screen Details"} 
+        ScreenDetailByTransactionIDRequest payload) returns OperationStatus|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "DeleteCustomScreenTransaction"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_CUSTOM_SCREEN, request);
+    }
+
+    # Retrieves By Employee Id Appraisal details
+    #
+    # + payload - Employee screen details
+    # + return -  Successful response or an error
+    @display{label: "Get Appraisal details by employee ID"} 
+    isolated remote function getAppraisalDetailsByEmployeeID(@display{label: "Employee Details"} 
+        AppraisalDetailsRequest payload) returns AppraisalDetailsResponse|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "GetByEmployeeId"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_APPRAISAL_DETAILS, request);
+    }
+
+    # Retrieves appraisal details by appraisal Id
+    #
+    # + payload - Employee screen details
+    # + return -  Successful response or an error
+    @display{label: "Get Appraisal details by employee ID"} 
+    isolated remote function getAppraisalDetailsByAppraisalID(@display{label: "Employee Details"} 
+        AppraisalDetailsByAppraisalIDRequest payload) returns AppraisalDetailsResponse|error {
+        http:Request request = new;
+        json authentication = {APIKey: self.config.apiKey, Action: "GetByAppraisalId"};
+        request.setJsonPayload(check payload.toJson().mergeJson(authentication));
+        return self.HTTPClient->post(EMPLOYEE_APPRAISAL_DETAILS, request);
+    }
 }
