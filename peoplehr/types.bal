@@ -68,7 +68,7 @@ public type EmployeesResponse record {|
 # + Result - The response details of the operation
 public type EmployeeResponse record {|
     *PeopleHRGenericResponse;
-    Employee? Result;
+    Employee?|record {} Result;
 |};
 
 # Represents the response type of `updateEmployeeDetail` operation
