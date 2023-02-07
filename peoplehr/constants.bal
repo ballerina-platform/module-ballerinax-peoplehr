@@ -16,7 +16,7 @@
 
 //Paths
 const string EMPLOYEE = "/Employee";
-const string EMPLOYEE_APPRAISAL_DETAILS = "/EmployeeAppraisal";
+const string EMPLOYEE_APPRAISAL_DETAILS = "/Appraisal";
 const string EMPLOYEE_CUSTOM_SCREEN = "/CustomScreen";
 const string VACANCY = "/Vacancy";
 const string HOLIDAY = "/Holiday";
