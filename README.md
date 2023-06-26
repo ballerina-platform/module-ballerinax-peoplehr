@@ -2,6 +2,7 @@ Ballerina connector for People HR
 ===================
 [![CI](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml)
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ballerina-platform/module-ballerinax-peoplehr?color=green&include_prereleases&label=latest%20release)
+[![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/build-with-bal-test-native.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/build-with-bal-test-native.yml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 PeopleHR API helps you easily integrate People with other systems and applications, for seamless cross-platform data sharing. 
