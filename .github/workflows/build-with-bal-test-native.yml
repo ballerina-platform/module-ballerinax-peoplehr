@@ -32,7 +32,7 @@ jobs:
                 version: latest
 
             - name: Run Ballerina tests using the native executable
-              run: bal test --native ./peoplehr
+              run: bal test --graalvm ./peoplehr
               env:
                 BASE_URL: ${{ secrets.BASE_URL }}
                 API_KEY: ${{ secrets.API_KEY }}
