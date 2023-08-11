@@ -1,0 +1,35 @@
+name: Pull_Request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Set Up Ballerina
+          uses: ballerina-platform/setup-ballerina@v1.1.0
+          with:
+            version: latest
+
+        - name: Ballerina Build
+          run: bal pack ./peoplehr
+          env:
+            JAVA_HOME: /usr/lib/jvm/default-jvm
+
+        - name: Ballerina Tests
+          # tests will be skipped if the PR is from a forked repository (as the secrets are not available)
+          if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+          run: bal test --test-report --code-coverage --coverage-format=xml ./peoplehr
+          env:
+            BASE_URL: ${{ secrets.BASE_URL }}
+            API_KEY: ${{ secrets.API_KEY }}
+            EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+            PASSWORD: ${{ secrets.PASSWORD }}
+            QUERY_NAME: ${{ secrets.QUERY_NAME }}
+
+        - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v3
