@@ -1,6 +1,6 @@
 Ballerina connector for People HR
 ===================
-[![CI](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml)
+[![Build Status](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerinax-peoplehr/branch/main/graph/badge.svg)](https://codecov.io/gh/ballerina-platform/module-ballerinax-peoplehr)
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ballerina-platform/module-ballerinax-peoplehr?color=green&include_prereleases&label=latest%20release)
 [![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/build-with-bal-test-native.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-peoplehr/actions/workflows/build-with-bal-test-native.yml)
@@ -26,11 +26,11 @@ Execute the commands below to build from the source.
  
 * To build the ballerina package:
    ```   
-   bal pack ./peoplehr
+   bal build ./ballerina
    ```
 * To run tests:
    ```
-   bal test ./peoplehr
+   bal test ./ballerina
    ```
 ## Contributing to Ballerina
  
