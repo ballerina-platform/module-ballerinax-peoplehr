@@ -2,7 +2,7 @@
 distribution = "2201.4.1"
 org = "ballerinax"
 name = "peoplehr"
-version = "2.2.0"
+version = "2.2.1"
 authors = ["Ballerina"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-peoplehr"
