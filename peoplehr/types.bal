@@ -514,9 +514,9 @@ public type FieldHistoryForJobRole record {|
 # + ATS - ATS value  
 # + Performance - The performance  
 # + Benefits - The benefits  
-# + System1ID - The system1 ID
-# + System2ID - The system2 ID  
-# + System3ID - The system3 ID
+# + System1\ ID - The system1 ID
+# + System2\ ID - The system2 ID  
+# + System3\ ID - The system3 ID
 # + APIColumn1 - API column 1  
 # + APIColumn2 - API column 2  
 # + APIColumn3 - API column 3  
@@ -553,9 +553,9 @@ public type NewEmployeeRequest record {|
     string ATS?;
     string Performance?;
     string Benefits?;
-    string System1ID?;
-    string System2ID?;
-    string System3ID?;
+    string System1\ ID?;
+    string System2\ ID?;
+    string System3\ ID?;
     string APIColumn1?;
     string APIColumn2?;
     string APIColumn3?;
@@ -599,9 +599,9 @@ public type NewEmployeeRequest record {|
 # + ATS - ATS value  
 # + Performance - The performance  
 # + Benefits - The benefits  
-# + System1ID - The system1 ID
-# + System2ID - The system2 ID  
-# + System3ID - The system3 ID 
+# + System1\ ID - The system1 ID
+# + System2\ ID - The system2 ID  
+# + System3\ ID - The system3 ID 
 # + APIColumn1 - API column 1  
 # + APIColumn2 - API column 2  
 # + APIColumn3 - API column 3  
@@ -642,9 +642,9 @@ public type EmployeeUpdateRequest record {|
     string ATS?;
     string Performance?;
     string Benefits?;
-    string System1ID?;
-    string System2ID?;
-    string System3ID?;
+    string System1\ ID?;
+    string System2\ ID?;
+    string System3\ ID?;
     string APIColumn1?;
     string APIColumn2?;
     string APIColumn3?;
