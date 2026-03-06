@@ -6,7 +6,7 @@ version = "2.1.0"
 authors = ["Ballerina"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-peoplehr"
-keywords = ["Human Resources/HRMS", "Cost/Paid"]
+keywords = ["PeopleHR", "HRIS", "Payroll", "Workforce Management", "Vendor/PeopleHR", "Area/HRMS", "Type/Connector"]
 license = ["Apache-2.0"]
 
 [build-options]
