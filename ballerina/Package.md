@@ -30,7 +30,7 @@ Add steps to create a simple sample
 ```ballerina
         peoplehr:Client baseClient = check new ({apiKey: <API Key>, baseURL: "https://api.peoplehr.net"});
 ```
-### Step 3 - Invoke  connector operation 
+### Step 3 - Invoke connector operation 
 
 ```ballerina
         peoplehr:QueryDetail response = check baseClient->getQueryByName({QueryName: <Query Name>});
