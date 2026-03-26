@@ -3,6 +3,14 @@ PeopleHR connector provides the capability to access the operation to manage emp
  
 This connector supports 3.1 version.
  
+
+### Key Features
+
+- Manage employee records and personal details
+- Access holiday and absence data
+- Handle salary and compensation information
+- Support for various HR operations
+
 ## Setup guide
 
 - Create [PeopleHR account](https://www.peoplehr.com/)

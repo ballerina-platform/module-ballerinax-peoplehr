@@ -1,8 +1,16 @@
 ## Overview
-PeopleHR connector provides the capability to access the operation to manage employee details, holidays and salaries etc.
- 
-This connector supports 3.1 version.
- 
+
+[PeopleHR](https://www.peoplehr.com/) is a comprehensive HR software designed to help businesses manage their workforce efficiently. it provides tools for tracking employee information, managing leave and attendance, processing payroll, and monitoring performance.
+
+The PeopleHR connector offers APIs to connect and interact with the PeopleHR REST API, enabling the programmatic management of employee details, holidays, salaries, and other HR-related resources.
+
+### Key Features
+
+- Manage employee records and information
+- Efficient handling of holiday and leave requests
+- Programmatic access to salary and payroll data
+- Support for PeopleHR API version 3.1
+
 ## Setup guide
 
 - Create [PeopleHR account](https://www.peoplehr.com/)
