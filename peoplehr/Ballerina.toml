@@ -2,11 +2,11 @@
 distribution = "2201.4.1"
 org = "ballerinax"
 name = "peoplehr"
-version = "2.2.1"
+version = "2.2.2"
 authors = ["Ballerina"]
 icon = "icon.png"
 repository = "https://github.com/ballerina-platform/module-ballerinax-peoplehr"
-keywords = ["Human Resources/HRMS", "Cost/Paid"]
+keywords = ["Human Resources/HRMS", "Cost/Paid", "Type/Connector", "Area/HRMS", "Vendor/PeopleHR", "Name/PeopleHR"]
 license = ["Apache-2.0"]
 
 [build-options]

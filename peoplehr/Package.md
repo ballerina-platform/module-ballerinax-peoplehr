@@ -1,8 +1,14 @@
-Connects to [PeopleHR API](https://apidocs.peoplehr.com) from Ballerina
+## Overview
 
-## Package overview
-The peoplehr is a [Ballerina](https://ballerina.io/) connector for People HR API.
-This package provides access to operations to mange to employee details, holidays and salary in your company.
+[PeopleHR](https://www.peoplehr.com/) is a comprehensive HR software designed to help businesses manage their workforce efficiently. It provides tools for tracking employee information, managing leave and attendance, processing payroll, and monitoring performance.
+
+The PeopleHR connector offers APIs to connect and interact with the [PeopleHR API](https://apidocs.peoplehr.com) from [Ballerina](https://ballerina.io/), enabling the programmatic management of employee details, holidays, salaries, and other HR-related resources.
+
+### Key Features
+
+- Manage employee details in your company
+- Manage holiday details
+- Manage salary details
 
 ### Compatibility
 |                      | Version                      |
